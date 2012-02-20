@@ -23,7 +23,9 @@ $(function() {
 		
 		simulator : $('<div id="textarea_simulator"/>').css({
 				position: 'absolute',
-				'top': '-10000px'
+				top: 0,
+				left: 0,
+				visibility: 'hidden'
 			}).appendTo(document.body),
 
 		toHtml : function(text) {
