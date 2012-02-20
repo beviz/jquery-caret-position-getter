@@ -1,0 +1,19 @@
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.caretposition.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var tip = $('#tip');
+		$('#textarea').bind('keyup', function(e) {
+			if (e.keyCode == 65) {
+				var pos = $(this).getCaretPosition();
+				tip.css({
+					left: this.offsetLeft + pos.left,
+					top: this.offsetTop + pos.top
+				}).show();
+			}
+		})
+	});
+</script>
+<h2>Input 'a' in textarea for test!</h2>
+<textarea id="textarea" rows='3' style='width:415px;' style='resize:none'></textarea>
+<div id="tip" style='width:20px; height:5px; background-color:red; display:none; position:absolute;background-color:red;font-size:0;'></div>
