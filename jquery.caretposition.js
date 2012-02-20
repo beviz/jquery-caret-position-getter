@@ -22,8 +22,8 @@ $(function() {
 		},
 		
 		simulator : $('<div id="textarea_simulator"/>').css({
-				// position: 'absolute',
-				// 'top': '-10000px'
+				position: 'absolute',
+				'top': '-10000px'
 			}).appendTo(document.body),
 
 		toHtml : function(text) {
