@@ -1,6 +1,7 @@
 /**
  * jQuery plugin for getting position of cursor in textarea
- *
+
+ * @license under GNU license
  * @author Bevis Zhao (i@bevis.me, http://bevis.me)
  */
 $(function() {
@@ -10,8 +11,8 @@ $(function() {
 		primaryStyles: ['fontFamily', 'fontSize', 'fontWeight', 'fontVariant', 'fontStyle',
 			'paddingLeft', 'paddingTop', 'paddingBottom', 'paddingRight',
 			'marginLeft', 'marginTop', 'marginBottom', 'marginRight',
-			'borderLeftColor', 'borderTopColor', 'borderBottomColor', 'borderRightColor',  
-			'borderLeftStyle', 'borderTopStyle', 'borderBottomStyle', 'borderRightStyle', 
+			'borderLeftColor', 'borderTopColor', 'borderBottomColor', 'borderRightColor',
+			'borderLeftStyle', 'borderTopStyle', 'borderBottomStyle', 'borderRightStyle',
 			'borderLeftWidth', 'borderTopWidth', 'borderBottomWidth', 'borderRightWidth',
 			'line-height', 'outline'],
 
@@ -20,7 +21,7 @@ $(function() {
 			'overflow-x': 'hidden',
 			'overflow-y': 'auto'
 		},
-		
+
 		simulator : $('<div id="textarea_simulator"/>').css({
 				position: 'absolute',
 				top: 0,
@@ -32,7 +33,7 @@ $(function() {
 			return text.replace(/\n/g, '<br>')
 				.split(' ').join('<span style="white-space:prev-wrap">&nbsp;</span>');
 		},
-		// calculate position 
+		// calculate position
 		getCaretPosition: function() {
 			var cal = calculator, self = this, element = self[0], elementOffset = self.offset();
 
@@ -40,14 +41,14 @@ $(function() {
 			if ($.browser.msie) {
 				// must get focus first
 				element.focus();
-			    var range = document.selection.createRange();  
+			    var range = document.selection.createRange();
 			    $('#hskeywords').val(element.scrollTop);
-			    return {  
+			    return {
 			        left: range.boundingLeft - elementOffset.left,
-			        top: parseInt(range.boundingTop) - elementOffset.top + element.scrollTop 
-						+ document.documentElement.scrollTop + parseInt(self.getComputedStyle("fontSize")) 
-			    };  
-			}  
+			        top: parseInt(range.boundingTop) - elementOffset.top + element.scrollTop
+						+ document.documentElement.scrollTop + parseInt(self.getComputedStyle("fontSize"))
+			    };
+			}
 			cal.simulator.empty();
 			// clone primary styles to imitate textarea
 			$.each(cal.primaryStyles, function(index, styleName) {
@@ -71,10 +72,10 @@ $(function() {
 			cal.simulator.append(before).append(focus).append(after);
 			var focusOffset = focus.offset(), simulatorOffset = cal.simulator.offset();
 			// alert(focusOffset.left  + ',' +  simulatorOffset.left + ',' + element.scrollLeft);
-			return { 
-				top: focusOffset.top - simulatorOffset.top - element.scrollTop 
+			return {
+				top: focusOffset.top - simulatorOffset.top - element.scrollTop
 					// calculate and add the font height except Firefox
-					+ ($.browser.mozilla ? 0 : parseInt(self.getComputedStyle("fontSize"))), 
+					+ ($.browser.mozilla ? 0 : parseInt(self.getComputedStyle("fontSize"))),
 				left: focus[0].offsetLeft -  cal.simulator[0].offsetLeft - element.scrollLeft
 			};
 		}
@@ -88,9 +89,9 @@ $(function() {
 			result = result || ($.browser.msie ?
 				thiz.currentStyle[styleName]:
 				document.defaultView.getComputedStyle(thiz, null)[styleName]);
-			return result;			
+			return result;
 		},
-		// easy clone method 
+		// easy clone method
 		cloneStyle: function(target, styleName) {
 			var styleVal = this.getComputedStyle(styleName);
 			if (!!styleVal) {
@@ -101,7 +102,7 @@ $(function() {
 			var thiz = this[0];
 			for (var styleName in thiz.style) {
 				var val = thiz.style[styleName];
-				typeof val == 'string' || typeof val == 'number' 
+				typeof val == 'string' || typeof val == 'number'
 					? this.cloneStyle(target, styleName)
 					: NaN;
 			}
