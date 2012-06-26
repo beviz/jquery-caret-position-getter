@@ -1,7 +1,7 @@
 /**
  * jQuery plugin for getting position of cursor in textarea
 
- * @license under Apache license
+ * @license under GNU license
  * @author Bevis Zhao (i@bevis.me, http://bevis.me)
  */
 $(function() {
@@ -30,7 +30,7 @@ $(function() {
 			}).appendTo(document.body),
 
 		toHtml : function(text) {
-			return text.replace(/\n/g, '<br>')
+			return text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g, '<br>')
 				.split(' ').join('<span style="white-space:prev-wrap">&nbsp;</span>');
 		},
 		// calculate position
