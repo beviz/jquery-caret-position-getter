@@ -1,7 +1,7 @@
 /**
  * jQuery plugin for getting position of cursor in textarea
 
- * @license under GNU license
+ * @license under Apache license
  * @author Bevis Zhao (i@bevis.me, http://bevis.me)
  */
 $(function() {
