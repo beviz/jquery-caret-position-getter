@@ -38,7 +38,7 @@ $(function() {
 			var cal = calculator, self = this, element = self[0], elementOffset = self.offset();
 
 			// IE has easy way to get caret offset position
-			if ($.browser.msie) {
+			if ($.support.msie) {
 				// must get focus first
 				element.focus();
 			    var range = document.selection.createRange();
@@ -75,7 +75,7 @@ $(function() {
 			return {
 				top: focusOffset.top - simulatorOffset.top - element.scrollTop
 					// calculate and add the font height except Firefox
-					+ ($.browser.mozilla ? 0 : parseInt(self.getComputedStyle("fontSize"))),
+					+ ($.support.mozilla ? 0 : parseInt(self.getComputedStyle("fontSize"))),
 				left: focus[0].offsetLeft -  cal.simulator[0].offsetLeft - element.scrollLeft
 			};
 		}
@@ -86,7 +86,7 @@ $(function() {
 			if (this.length == 0) return;
 			var thiz = this[0];
 			var result = this.css(styleName);
-			result = result || ($.browser.msie ?
+			result = result || ($.support.msie ?
 				thiz.currentStyle[styleName]:
 				document.defaultView.getComputedStyle(thiz, null)[styleName]);
 			return result;
@@ -113,7 +113,7 @@ $(function() {
 	            result = thiz.selectionStart;
 	        } else if('selection' in document) {
 	        	var range = document.selection.createRange();
-	        	if (parseInt($.browser.version) > 6) {
+	        	if (parseInt($.support.version) > 6) {
 		            thiz.focus();
 		            var length = document.selection.createRange().text.length;
 		            range.moveStart('character', - thiz.value.length);
