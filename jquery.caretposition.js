@@ -43,7 +43,6 @@
 					// must get focus first
 					element.focus();
 				    var range = document.selection.createRange();
-				    $('#hskeywords').val(element.scrollTop);
 				    return {
 				        left: range.boundingLeft - elementOffset.left,
 				        top: parseInt(range.boundingTop) - elementOffset.top + element.scrollTop
