@@ -23,7 +23,7 @@
 				'overflow-y': 'auto'
 			},
 
-			simulator : $('<div id="textarea_simulator"/>').css({
+			simulator : $('<div id="textarea_simulator" contenteditable="true"/>').css({
 					position: 'absolute',
 					top: 0,
 					left: 0,
@@ -32,7 +32,7 @@
 
 			toHtml : function(text) {
 				return text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g, '<br>')
-					.split(' ').join('<span style="white-space:prev-wrap">&nbsp;</span>');
+					.replace(/(\s)/g,'<span style="white-space:pre-wrap;">$1</span>');
 			},
 			// calculate position
 			getCaretPosition: function() {
