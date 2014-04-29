@@ -5,7 +5,7 @@
  * @author Bevis Zhao (i@bevis.me, http://bevis.me)
  */
 
-(function($, window, document, undefined){
+(function($, window, document, undefined) {
 	$(function() {
 		var calculator = {
 			// key styles
@@ -24,11 +24,11 @@
 			},
 
 			simulator : $('<div id="textarea_simulator" contenteditable="true"/>').css({
-					position: 'absolute',
-					top: 0,
-					left: 0,
-					visibility: 'hidden'
-				}).appendTo(document.body),
+				position: 'absolute',
+				top: 0,
+				left: 0,
+				visibility: 'hidden'
+			}).appendTo(document.body),
 
 			toHtml : function(text) {
 				return text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g, '<br>')
@@ -42,12 +42,12 @@
 				if ($.browser.msie) {
 					// must get focus first
 					element.focus();
-				    var range = document.selection.createRange();
-				    return {
-				        left: range.boundingLeft - elementOffset.left,
-				        top: parseInt(range.boundingTop) - elementOffset.top + element.scrollTop
+					var range = document.selection.createRange();
+					return {
+						left: range.boundingLeft - elementOffset.left,
+						top: parseInt(range.boundingTop) - elementOffset.top + element.scrollTop
 							+ document.documentElement.scrollTop + parseInt(self.getComputedStyle("fontSize"))
-				    };
+					};
 				}
 				cal.simulator.empty();
 				// clone primary styles to imitate textarea
@@ -108,32 +108,32 @@
 				}
 			},
 			getCursorPosition : function() {
-		        var thiz = this[0], result = 0;
-		        if ('selectionStart' in thiz) {
-		            result = thiz.selectionStart;
-		        } else if('selection' in document) {
-		        	var range = document.selection.createRange();
-		        	if (parseInt($.browser.version) > 6) {
-			            thiz.focus();
-			            var length = document.selection.createRange().text.length;
-			            range.moveStart('character', - thiz.value.length);
-			            result = range.text.length - length;
-		        	} else {
-		                var bodyRange = document.body.createTextRange();
-		                bodyRange.moveToElementText(thiz);
-		                for (; bodyRange.compareEndPoints("StartToStart", range) < 0; result++)
-		                	bodyRange.moveStart('character', 1);
-		                for (var i = 0; i <= result; i ++){
-		                    if (thiz.value.charAt(i) == '\n')
-		                        result++;
-		                }
-		                var enterCount = thiz.value.split('\n').length - 1;
+				var thiz = this[0], result = 0;
+				if ('selectionStart' in thiz) {
+					result = thiz.selectionStart;
+				} else if('selection' in document) {
+					var range = document.selection.createRange();
+					if (parseInt($.browser.version) > 6) {
+						thiz.focus();
+						var length = document.selection.createRange().text.length;
+						range.moveStart('character', - thiz.value.length);
+						result = range.text.length - length;
+					} else {
+						var bodyRange = document.body.createTextRange();
+						bodyRange.moveToElementText(thiz);
+						for (; bodyRange.compareEndPoints("StartToStart", range) < 0; result++)
+							bodyRange.moveStart('character', 1);
+						for (var i = 0; i <= result; i ++){
+							if (thiz.value.charAt(i) == '\n')
+								result++;
+						}
+						var enterCount = thiz.value.split('\n').length - 1;
 						result -= enterCount;
-	                    return result;
-		        	}
-		        }
-		        return result;
-		    },
+						return result;
+					}
+				}
+				return result;
+			},
 			getCaretPosition: calculator.getCaretPosition
 		});
 	});
